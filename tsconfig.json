@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    // Useless without https://github.com/rbuckton/reflect-metadata
+    "emitDecoratorMetadata": false,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "isolatedModules": false,
+    "jsx": "preserve",
+    "keyofStringsOnly": true,
+    "lib": ["dom", "es6", "es7", "esnext"],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "paths": {
+      "lib/*": ["src/lib/*"],
+      "gql/*": ["src/lib/gql/*"],
+      "HOCs/*": ["src/lib/HOCs/*"],
+      "hooks/*": ["src/lib/hooks/*"],
+      "utils/*": ["src/lib/utils/*"],
+      "services/*": ["src/lib/services/*"],
+      "constants/*": ["src/lib/constants/*"],
+      "containers/*": ["src/containers/*"],
+      "components/*": ["src/components/*"],
+      "pages/*": ["src/pages/*"],
+      "assets/*": ["assets/*"]
+    },
+    "preserveConstEnums": false,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "typeRoots": ["./node_modules/@types", "./types", "./build/types"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["node_modules"]
+}
