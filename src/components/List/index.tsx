@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { hot } from 'react-hot-loader/root'
 
+import { ThemeEnablingContext } from 'containers/App'
 import ItemByHook from './components/ItemByHook'
 import ItemByHOC from './components/ItemByHOC'
 import useStyles from './styles'
@@ -18,12 +19,19 @@ const List: FC<Props> = ({ isRenderByHOC, isRenderByHook, isCustomHOC }) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.container}>
-      {isRenderByHook && items.map((_, index) => <ItemByHook key={`hook-${index}`} />)}
-      <br />
-      {isRenderByHOC &&
-        items.map((_, index) => <ItemByHOC key={`HOC-${index}`} isCustomHOC={isCustomHOC} />)}
-    </div>
+    <ThemeEnablingContext.Consumer>
+      {withTheming => (
+        <div className={classes.container}>
+          {isRenderByHook &&
+            items.map((_, index) => <ItemByHook key={`hook-${index}`} withTheming={withTheming} />)}
+          <br />
+          {isRenderByHOC &&
+            items.map((_, index) => (
+              <ItemByHOC key={`HOC-${index}`} isCustomHOC={isCustomHOC} withTheming={withTheming} />
+            ))}
+        </div>
+      )}
+    </ThemeEnablingContext.Consumer>
   )
 }
 

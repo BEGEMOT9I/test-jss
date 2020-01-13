@@ -1,19 +1,26 @@
 import React, { ComponentType } from 'react'
-import { StyleSheetFactoryOptions, Styles, Classes } from 'jss'
-import withStyles, { createUseStyles, useTheme } from 'react-jss'
+import { StyleSheetFactoryOptions, Styles, Classes, Jss } from 'jss'
+import { createUseStyles } from 'react-jss'
+import { Theming } from 'theming'
 
-type JSSClasses<S> = { [K in keyof S]: string }
+type JSSClasses<S> = S extends (theme: any) => Styles<string>
+  ? Classes<keyof ReturnType<S>>
+  : Classes<string>
 interface WithStylesOptions extends StyleSheetFactoryOptions {
-  name?: string
+  index?: number
+  injectTheme?: boolean
+  jss?: Jss
+  theming?: Theming<object>
 }
-type WithStylesHOC = <ClassNames extends string | number | symbol, S extends Styles<ClassNames>>(
+type WithStylesHOC = <
+  ClassNames extends string | number | symbol,
+  S extends Styles<ClassNames> | ((theme: any) => Styles<ClassNames>)
+>(
   styles: S,
   options?: WithStylesOptions
 ) => <
   Props extends {
-    classes: S extends (theme: any) => Styles<ClassNames>
-      ? Classes<keyof ReturnType<S>>
-      : Classes<ClassNames>
+    classes: JSSClasses<S>
   }
 >(
   component: ComponentType<Props>
@@ -23,10 +30,10 @@ export interface JSSProps<S> {
 }
 
 const withStylesHOC: WithStylesHOC = (styles, options) => {
+  // @ts-ignore
   const useStyles = createUseStyles(styles, options)
 
   return WrappedComponent => props => {
-    // const theme = useTheme()
     const classes = useStyles(props)
 
     return <WrappedComponent {...props} classes={classes} />
