@@ -24,7 +24,8 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.18",
-    "react-jss": "^10.0.3"
+    "react-jss": "^10.0.3",
+    "styled-system": "^5.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",
@@ -44,6 +45,7 @@
     "@types/classnames": "^2.2.3",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "@types/styled-system": "^5.1.4",
     "@typescript-eslint/eslint-plugin": "^2.7.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.7.0",
     "@typescript-eslint/parser": "^2.7.0",

@@ -1,6 +1,7 @@
 import React, { FC, createContext, useState, useCallback, InputHTMLAttributes } from 'react'
 import { hot } from 'react-hot-loader/root'
 
+import Test from '../Test'
 import Toggler from 'components/Toggler'
 import WithTheme from './components/WithTheme'
 import WithoutTheme from './components/WithoutTheme'
@@ -10,7 +11,10 @@ interface Props extends OuterProps {}
 
 export const theme = {
   hookColor: 'green',
-  HOCColor: 'red'
+  HOCColor: 'red',
+  breakpoint: {
+    xl: 800
+  }
 }
 export type Theme = typeof theme
 
@@ -36,3 +40,4 @@ const App: FC<Props> = () => {
 
 export { ThemeEnablingContext }
 export default hot(App)
+// export default hot(Test)

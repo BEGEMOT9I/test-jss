@@ -13,7 +13,6 @@ const ItemByHook: FC<Props> = ({ withTheming }) => {
   const classesWithoutTheme = useWithoutThemeStyles()
   const classes = withTheming ? classesWithTheme : classesWithoutTheme
 
-  // @ts-ignore
   return <div className={classes.container}>Hook{withTheming && ' (with theme)'}</div>
 }
 

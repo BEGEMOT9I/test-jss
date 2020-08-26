@@ -10,15 +10,28 @@ const styles = {
     color: '#fff',
     backgroundColor: 'green',
     borderRadius: '0.25rem'
+  },
+  'media (max-width: 800px)': {
+    container: {
+      margin: '1.125rem'
+    }
   }
 }
-const useWithoutThemeStyles = createUseStyles(styles)
-const useWithThemeStyles = createUseStyles((theme: Theme) => ({
+const themedStyles = (theme: Theme) => ({
   ...styles,
   container: {
     ...styles.container,
     backgroundColor: theme.hookColor
+  },
+  [theme.breakpoint.xl]: {
+    container: {
+      margin: '1.125rem'
+    }
   }
-}))
+})
+const useWithoutThemeStyles = createUseStyles<typeof styles, 'media (max-width: 800px)'>(styles)
+const useWithThemeStyles = createUseStyles<typeof themedStyles, 'media (max-width: 800px)'>(
+  themedStyles
+)
 
 export { useWithoutThemeStyles, useWithThemeStyles }
