@@ -29,9 +29,7 @@ const themedStyles = (theme: Theme) => ({
     }
   }
 })
-const useWithoutThemeStyles = createUseStyles<typeof styles, 'media (max-width: 800px)'>(styles)
-const useWithThemeStyles = createUseStyles<typeof themedStyles, 'media (max-width: 800px)'>(
-  themedStyles
-)
+const useWithoutThemeStyles = createUseStyles(styles)
+const useWithThemeStyles = createUseStyles(themedStyles)
 
 export { useWithoutThemeStyles, useWithThemeStyles }
